@@ -26,8 +26,9 @@ public class MainApp {
 		
 		FileService fileService = new FileService();
 				
-				
-				
+		System.out.println(fileService.calculateMasterListLength());
+		//fileService.getStudentFromFile(fileService.calculateMasterListLength());
+	
 			
 
 

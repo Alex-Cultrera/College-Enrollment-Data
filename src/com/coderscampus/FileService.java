@@ -8,18 +8,25 @@ import java.io.IOException;
 
 public class FileService {
 
-public StudentEnrollment[] getStudentFromFile () {
+private String fileName = "student-master-list.csv";
+private String invalidStudent = "Student ID";
+
+	
+	
+public StudentEnrollment[] getStudentFromFile (int numberOfStudents) {
 		
 		BufferedReader fileReader = null;
-		int numberOfStudents = 100;
-		
+				
 		try {
 			int i = 0;
 			String line = null;
 			StudentEnrollment[] students = new StudentEnrollment[numberOfStudents];
-			fileReader = new BufferedReader(new FileReader("student-master-list.csv"));
+			fileReader = new BufferedReader(new FileReader(fileName));
 			
 			while ((line = fileReader.readLine()) != null) {
+				if (line.contains(invalidStudent) == true) {
+					line = fileReader.readLine();
+				}
 				String[] lineData = line.split(",");
 				StudentEnrollment student = new StudentEnrollment(Integer.parseInt(lineData[0]), lineData[1], lineData[2], Integer.parseInt(lineData[3]));
 				students[i] = student;
@@ -42,5 +49,32 @@ public StudentEnrollment[] getStudentFromFile () {
 			return null;
 		}
 	
+
+public int calculateMasterListLength() {
+	int studentMasterListLength = 0;
+	BufferedReader buffReader;
+	try {
+		buffReader = new BufferedReader(new FileReader(fileName));
+		String userInfo = buffReader.readLine();
+		while (userInfo != null) {
+			if (userInfo.contains(invalidStudent) == true) {
+				userInfo = buffReader.readLine();
+			}
+			studentMasterListLength++;
+			userInfo = buffReader.readLine();
+		}
+	} catch (FileNotFoundException e) {
+		System.out.println("Oops, the file wasn't found");
+		e.printStackTrace(); 
+	} catch (IOException e) {
+		System.out.println("Oops, there was an I/O Exception");
+		e.printStackTrace();
+	}		
+	return studentMasterListLength;
+}
+
+
+
+
 	
 }
