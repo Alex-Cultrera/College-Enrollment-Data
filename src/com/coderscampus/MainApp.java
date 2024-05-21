@@ -23,13 +23,19 @@ public class MainApp {
 		// when writing to a file, you can use "\n" to write a new line to the file (example, fileWriter.write("This is one line \n")
 		// to convert String input to an Integer, you can parse it like so: Integer myIntVal = Integer.parseInt(myStringVal)
 		
-		
-		FileService fileService = new FileService();
-				
-		
-		fileService.getStudentFromFile(fileService.calculateMasterListLength());
 	
-			
+		System.out.println("Master List of Enrolled Students:");
+		System.out.println("\n");
+		System.out.println("Student ID, Student Name, Course, Grade");
+		System.out.println("\n");
+		
+		// import of master list of students into an array
+		FileService fileService = new FileService();
+		EnrolledStudent[] studentMasterList = fileService.getStudentFromFile(fileService.calculateMasterListLength());
+		for (EnrolledStudent student : studentMasterList) {
+			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
+		}
+		
 
 
 	}
