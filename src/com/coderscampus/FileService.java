@@ -1,8 +1,10 @@
 package com.coderscampus;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -78,6 +80,49 @@ public int calculateMasterListLength() {
 		e.printStackTrace();
 	}		
 	return studentMasterListLength;
+}
+
+public int calculateStudentListLengthByCourse(String courseCode) {
+	int listLength = 0;
+	BufferedReader buffReader;
+	try {
+		buffReader = new BufferedReader(new FileReader(fileName));
+		String userInfo = buffReader.readLine();
+		while (userInfo != null) {
+			if (userInfo.contains(courseCode) == true) {
+				listLength++;
+				userInfo = buffReader.readLine();
+			}
+			else {
+				listLength = listLength + 0;
+				userInfo = buffReader.readLine();
+			}
+			
+		}
+	} catch (FileNotFoundException e) {
+		System.out.println("Oops, the file wasn't found");
+		e.printStackTrace(); 
+	} catch (IOException e) {
+		System.out.println("Oops, there was an I/O Exception");
+		e.printStackTrace();
+	}		
+	return listLength;
+}
+
+
+
+public void writeStudentToFile(String nameOfFile, String data) throws IOException {
+	BufferedWriter writer = null;
+
+	try {
+		writer = new BufferedWriter(new FileWriter(nameOfFile));
+		while (data != null) {
+			writer.write(data + "\n");
+		}
+	} finally {
+		if (writer != null) writer.close();
+	}
+	
 }
 
 

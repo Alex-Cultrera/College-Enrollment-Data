@@ -1,5 +1,7 @@
 package com.coderscampus;
 
+import java.util.Arrays;
+
 public class MainApp {
 
 	public static void main(String[] args) {
@@ -23,7 +25,13 @@ public class MainApp {
 		// when writing to a file, you can use "\n" to write a new line to the file (example, fileWriter.write("This is one line \n")
 		// to convert String input to an Integer, you can parse it like so: Integer myIntVal = Integer.parseInt(myStringVal)
 		
-	
+		String compsciCourseCode = "COMPSCI";
+		String compsciFileName = "course1.csv";
+		String statCourseCode = "STAT";
+		String statFileName = "course2.csv";
+		String apmthCourseCode = "APMTH";
+		String apmthFileName = "course3.csv";
+			
 		System.out.println("Master List of Enrolled Students:");
 		System.out.println("\n");
 		System.out.println("Student ID, Student Name, Course, Grade");
@@ -36,6 +44,9 @@ public class MainApp {
 			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
 		}
 		
+		System.out.println("\n");
+		
+		Arrays.sort(studentMasterList);
 
 
 	}
