@@ -1,6 +1,6 @@
 package com.coderscampus;
 
-public class StudentEnrollment {
+public class EnrolledStudent {
 
 	private int studentID;
 	private String studentName;
@@ -39,7 +39,7 @@ public class StudentEnrollment {
 		this.grade = grade;
 	}
 	
-	public StudentEnrollment(int studentID, String studentName, String course, int grade) {
+	public EnrolledStudent(int studentID, String studentName, String course, int grade) {
 		this.studentID = studentID;
 		this.studentName = studentName;
 		this.course = course;

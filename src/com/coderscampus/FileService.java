@@ -13,14 +13,14 @@ private String invalidStudent = "Student ID";
 
 	
 	
-public StudentEnrollment[] getStudentFromFile (int numberOfStudents) {
+public EnrolledStudent[] getStudentFromFile (int numberOfStudents) {
 		
 		BufferedReader fileReader = null;
 				
 		try {
 			int i = 0;
 			String line = null;
-			StudentEnrollment[] students = new StudentEnrollment[numberOfStudents];
+			EnrolledStudent[] students = new EnrolledStudent[numberOfStudents];
 			fileReader = new BufferedReader(new FileReader(fileName));
 			
 			while ((line = fileReader.readLine()) != null) {
@@ -29,7 +29,7 @@ public StudentEnrollment[] getStudentFromFile (int numberOfStudents) {
 				}
 				else {
 					String[] lineData = line.split(",");
-					StudentEnrollment student = new StudentEnrollment(Integer.parseInt(lineData[0]), lineData[1], lineData[2], Integer.parseInt(lineData[3]));
+					EnrolledStudent student = new EnrolledStudent(Integer.parseInt(lineData[0]), lineData[1], lineData[2], Integer.parseInt(lineData[3]));
 					students[i] = student;
 					i++;		
 				}
