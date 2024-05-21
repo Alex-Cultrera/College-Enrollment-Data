@@ -25,12 +25,15 @@ public StudentEnrollment[] getStudentFromFile (int numberOfStudents) {
 			
 			while ((line = fileReader.readLine()) != null) {
 				if (line.contains(invalidStudent) == true) {
-					line = fileReader.readLine();
+					i=i+0;
 				}
-				String[] lineData = line.split(",");
-				StudentEnrollment student = new StudentEnrollment(Integer.parseInt(lineData[0]), lineData[1], lineData[2], Integer.parseInt(lineData[3]));
-				students[i] = student;
-				i++;				
+				else {
+					String[] lineData = line.split(",");
+					StudentEnrollment student = new StudentEnrollment(Integer.parseInt(lineData[0]), lineData[1], lineData[2], Integer.parseInt(lineData[3]));
+					students[i] = student;
+					i++;		
+				}
+						
 			}
 			return students;
 		} catch (FileNotFoundException e) {
@@ -58,10 +61,14 @@ public int calculateMasterListLength() {
 		String userInfo = buffReader.readLine();
 		while (userInfo != null) {
 			if (userInfo.contains(invalidStudent) == true) {
+				studentMasterListLength = studentMasterListLength + 0;
 				userInfo = buffReader.readLine();
 			}
-			studentMasterListLength++;
-			userInfo = buffReader.readLine();
+			else {
+				studentMasterListLength++;
+				userInfo = buffReader.readLine();
+			}
+			
 		}
 	} catch (FileNotFoundException e) {
 		System.out.println("Oops, the file wasn't found");
