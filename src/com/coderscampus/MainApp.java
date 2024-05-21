@@ -27,8 +27,10 @@ public class MainApp {
 		
 		String compsciCourseCode = "COMPSCI";
 		String compsciFileName = "course1.csv";
+		
 		String statCourseCode = "STAT";
 		String statFileName = "course2.csv";
+		
 		String apmthCourseCode = "APMTH";
 		String apmthFileName = "course3.csv";
 			
@@ -46,8 +48,33 @@ public class MainApp {
 		
 		System.out.println("\n");
 		
-		Arrays.sort(studentMasterList);
+		// parse the master list by course
+		int x=0;
+		int y=0;
+		int z=0;
+		for (EnrolledStudent student : studentMasterList) {
+			if (student.getCourse().contains(compsciCourseCode)) {
+				COMPSCI csStudent = new COMPSCI(student.getStudentID(), student.getStudentName(), student.getCourse(), student.getGrade());
+				COMPSCI[] csStudents = new COMPSCI[fileService.calculateStudentListLengthByCourse(compsciCourseCode)];
+				csStudents[x] = csStudent;
+				x++;
+			}
+			if (student.getCourse().contains(statCourseCode)) {
+				STAT statStudent = new STAT(student.getStudentID(), student.getStudentName(), student.getCourse(), student.getGrade());
+				STAT[] statStudents = new STAT[fileService.calculateStudentListLengthByCourse(statCourseCode)];
+				statStudents[y] = statStudent;
+				y++;
+			}
+			if (student.getCourse().contains(apmthCourseCode)) {
+				APMTH apmthStudent = new APMTH(student.getStudentID(), student.getStudentName(), student.getCourse(), student.getGrade());
+				APMTH[] apmthStudents = new APMTH[fileService.calculateStudentListLengthByCourse(apmthCourseCode)];
+				apmthStudents[z] = apmthStudent;
+				z++;
+			}
+		}
 
+		
+		
 
 	}
 
