@@ -106,13 +106,15 @@ public int calculateStudentListLengthByCourse(String courseCode) {
 	return listLength;
 }
 
-public void writeCompsciStudentToFile(String nameOfFile, COMPSCI data) throws IOException {
+public void writeStudentToFile(String nameOfFile, EnrolledStudent[] students) throws IOException {
 	BufferedWriter writer = null;
 
 	try {
 		writer = new BufferedWriter(new FileWriter(nameOfFile));
-		while (data != null) {
-			writer.write(data + "\n");
+		while (students != null) {
+			for (EnrolledStudent student : students) {
+				writer.write(student + "\n");
+			}
 		}
 	} finally {
 		if (writer != null) writer.close();
@@ -120,32 +122,5 @@ public void writeCompsciStudentToFile(String nameOfFile, COMPSCI data) throws IO
 	
 }
 
-public void writeStatStudentToFile(String nameOfFile, STAT data) throws IOException {
-	BufferedWriter writer = null;
-
-	try {
-		writer = new BufferedWriter(new FileWriter(nameOfFile));
-		while (data != null) {
-			writer.write(data + "\n");
-		}
-	} finally {
-		if (writer != null) writer.close();
-	}
-	
-}
-
-public void writeApmthStudentToFile(String nameOfFile, APMTH data) throws IOException {
-	BufferedWriter writer = null;
-
-	try {
-		writer = new BufferedWriter(new FileWriter(nameOfFile));
-		while (data != null) {
-			writer.write(data + "\n");
-		}
-	} finally {
-		if (writer != null) writer.close();
-	}
-	
-}
 	
 }

@@ -75,27 +75,9 @@ public class MainApp {
 		
 		Arrays.sort(apmthStudents, new StudentComparator());
 
-		// Print the list of students to test that the sort was effective
-		System.out.println("\n");
-		System.out.println("COMPSCI students sorted by grade: ");
-		for (COMPSCI student : csStudents) {
-			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
-			fileService.writeCompsciStudentToFile(compsciFileName, student);
-		}
-		
-		System.out.println("\n");
-		System.out.println("STAT students sorted by grade: ");
-		for (STAT student : statStudents) {
-			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
-			fileService.writeStatStudentToFile(statFileName, student);
-		}
-		
-		System.out.println("\n");
-		System.out.println("APMTH students sorted by grade: ");
-		for (APMTH student : apmthStudents) {
-			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
-			fileService.writeApmthStudentToFile(apmthFileName, student);
-		}
+		fileService.writeStudentToFile(compsciFileName, csStudents);
+		fileService.writeStudentToFile(statFileName, statStudents);
+		fileService.writeStudentToFile(apmthFileName, apmthStudents);
 				
 	}
 
