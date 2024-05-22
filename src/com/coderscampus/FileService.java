@@ -111,10 +111,9 @@ public void writeStudentToFile(String nameOfFile, EnrolledStudent[] students) th
 
 	try {
 		writer = new BufferedWriter(new FileWriter(nameOfFile));
-		while (students != null) {
-			for (EnrolledStudent student : students) {
-				writer.write(student + "\n");
-			}
+		writer.write("Student ID" + ", " + "Student Name" + ", " + "Course" + ", " + "Grade" + "\n");
+		for (EnrolledStudent student : students) {
+			writer.write(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade() + "\n");
 		}
 	} finally {
 		if (writer != null) writer.close();

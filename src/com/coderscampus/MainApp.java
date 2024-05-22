@@ -8,11 +8,6 @@ public class MainApp {
 
 	public static void main(String[] args) throws IOException {
 			
-		// HINTS:
-		// If trying to use Arrays.sort(yourArray), and yourArray contains null values, the sort will crash (will need to learn how to handle null entries)
-		// when writing to a file, you can use "\n" to write a new line to the file (example, fileWriter.write("This is one line \n")
-		// to convert String input to an Integer, you can parse it like so: Integer myIntVal = Integer.parseInt(myStringVal)
-		
 		String compsciCourseCode = "COMPSCI";
 		String compsciFileName = "course1.csv";
 		
@@ -63,7 +58,7 @@ public class MainApp {
 				z++;
 			}
 			else {
-				System.out.println();
+				System.out.println("Invalid Student");
 			}
 						
 		}
@@ -75,6 +70,7 @@ public class MainApp {
 		
 		Arrays.sort(apmthStudents, new StudentComparator());
 
+		// write the students to separate CSV files separated by course
 		fileService.writeStudentToFile(compsciFileName, csStudents);
 		fileService.writeStudentToFile(statFileName, statStudents);
 		fileService.writeStudentToFile(apmthFileName, apmthStudents);
