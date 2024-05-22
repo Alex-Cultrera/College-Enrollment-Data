@@ -1,25 +1,13 @@
 package com.coderscampus;
 
+import java.io.IOException;
 import java.util.Arrays;
+
 
 public class MainApp {
 
-	public static void main(String[] args) {
-		// SITUATION:
-		// 3 different professors
-		// each have their own course enrollment list of students
-		// one CSV file containing master list of all students across all courses
-		// each professor only wants to see list of their own students
-		
-		// OBJECTIVE:
-		// parse the Master List separating the data into 3 separate CSV files
-		// group the students into separate CSVs by course 
-		// each CSV should sort the students by grade in descending order
-		// the CSV output file names should be called: 
-		// course1.csv
-		// course2.csv
-		// course3.csv
-		
+	public static void main(String[] args) throws IOException {
+			
 		// HINTS:
 		// If trying to use Arrays.sort(yourArray), and yourArray contains null values, the sort will crash (will need to learn how to handle null entries)
 		// when writing to a file, you can use "\n" to write a new line to the file (example, fileWriter.write("This is one line \n")
@@ -28,11 +16,14 @@ public class MainApp {
 		String compsciCourseCode = "COMPSCI";
 		String compsciFileName = "course1.csv";
 		
+		
 		String statCourseCode = "STAT";
 		String statFileName = "course2.csv";
 		
+		
 		String apmthCourseCode = "APMTH";
 		String apmthFileName = "course3.csv";
+		
 			
 		System.out.println("Master List of Enrolled Students:");
 		System.out.println("\n");
@@ -49,33 +40,63 @@ public class MainApp {
 		System.out.println("\n");
 		
 		// parse the master list by course
+		COMPSCI[] csStudents = new COMPSCI[fileService.calculateStudentListLengthByCourse(compsciCourseCode)];
+		STAT[] statStudents = new STAT[fileService.calculateStudentListLengthByCourse(statCourseCode)];
+		APMTH[] apmthStudents = new APMTH[fileService.calculateStudentListLengthByCourse(apmthCourseCode)];
 		int x=0;
 		int y=0;
 		int z=0;
 		for (EnrolledStudent student : studentMasterList) {
-			if (student.getCourse().contains(compsciCourseCode)) {
+			if (student.getCourse().contains(compsciCourseCode) == true) {
 				COMPSCI csStudent = new COMPSCI(student.getStudentID(), student.getStudentName(), student.getCourse(), student.getGrade());
-				COMPSCI[] csStudents = new COMPSCI[fileService.calculateStudentListLengthByCourse(compsciCourseCode)];
 				csStudents[x] = csStudent;
 				x++;
 			}
-			if (student.getCourse().contains(statCourseCode)) {
+			else if (student.getCourse().contains(statCourseCode) == true) {
 				STAT statStudent = new STAT(student.getStudentID(), student.getStudentName(), student.getCourse(), student.getGrade());
-				STAT[] statStudents = new STAT[fileService.calculateStudentListLengthByCourse(statCourseCode)];
 				statStudents[y] = statStudent;
 				y++;
 			}
-			if (student.getCourse().contains(apmthCourseCode)) {
+			else if (student.getCourse().contains(apmthCourseCode) == true) {
 				APMTH apmthStudent = new APMTH(student.getStudentID(), student.getStudentName(), student.getCourse(), student.getGrade());
-				APMTH[] apmthStudents = new APMTH[fileService.calculateStudentListLengthByCourse(apmthCourseCode)];
 				apmthStudents[z] = apmthStudent;
 				z++;
 			}
+			else {
+				System.out.println();
+			}
+						
 		}
-
 		
+		// sort the students enrolled in each course by grade in descending order
+		Arrays.sort(csStudents, new StudentComparator());
 		
+		Arrays.sort(statStudents, new StudentComparator());
+		
+		Arrays.sort(apmthStudents, new StudentComparator());
 
+		// Print the list of students to test that the sort was effective
+		System.out.println("\n");
+		System.out.println("COMPSCI students sorted by grade: ");
+		for (COMPSCI student : csStudents) {
+			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
+			fileService.writeCompsciStudentToFile(compsciFileName, student);
+		}
+		
+		System.out.println("\n");
+		System.out.println("STAT students sorted by grade: ");
+		for (STAT student : statStudents) {
+			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
+			fileService.writeStatStudentToFile(statFileName, student);
+		}
+		
+		System.out.println("\n");
+		System.out.println("APMTH students sorted by grade: ");
+		for (APMTH student : apmthStudents) {
+			System.out.println(student.getStudentID() + ", " + student.getStudentName() + ", " + student.getCourse() + ", " + student.getGrade());
+			fileService.writeApmthStudentToFile(apmthFileName, student);
+		}
+				
 	}
 
 }

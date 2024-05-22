@@ -1,17 +1,19 @@
 package com.coderscampus;
 
-public class EnrolledStudent {
+import java.util.Comparator;
 
-	private int studentID;
+public class EnrolledStudent implements Comparator<EnrolledStudent> {
+
+	private Integer studentID;
 	private String studentName;
 	private String course;
-	private int grade;
+	private Integer grade;
 	
-	public int getStudentID() {
+	public Integer getStudentID() {
 		return studentID;
 	}
 
-	public void setStudentID(int studentID) {
+	public void setStudentID(Integer studentID) {
 		this.studentID = studentID;
 	}
 
@@ -31,20 +33,27 @@ public class EnrolledStudent {
 		this.course = course;
 	}
 
-	public int getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
 
-	public void setGrade(int grade) {
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
 	
-	public EnrolledStudent(int studentID, String studentName, String course, int grade) {
+	public EnrolledStudent(Integer studentID, String studentName, String course, Integer grade) {
 		this.studentID = studentID;
 		this.studentName = studentName;
 		this.course = course;
 		this.grade = grade;
 	}
+
+	
+	@Override
+	public int compare(EnrolledStudent student1, EnrolledStudent student2) {
+			return student1.getGrade().compareTo(student2.getGrade());
+		}
+
 
 	
 }

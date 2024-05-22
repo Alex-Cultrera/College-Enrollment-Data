@@ -12,8 +12,6 @@ public class FileService {
 
 private String fileName = "student-master-list.csv";
 private String invalidStudent = "Student ID";
-
-	
 	
 public EnrolledStudent[] getStudentFromFile (int numberOfStudents) {
 		
@@ -54,7 +52,6 @@ public EnrolledStudent[] getStudentFromFile (int numberOfStudents) {
 			return null;
 		}
 	
-
 public int calculateMasterListLength() {
 	int studentMasterListLength = 0;
 	BufferedReader buffReader;
@@ -109,9 +106,7 @@ public int calculateStudentListLengthByCourse(String courseCode) {
 	return listLength;
 }
 
-
-
-public void writeStudentToFile(String nameOfFile, String data) throws IOException {
+public void writeCompsciStudentToFile(String nameOfFile, COMPSCI data) throws IOException {
 	BufferedWriter writer = null;
 
 	try {
@@ -125,8 +120,32 @@ public void writeStudentToFile(String nameOfFile, String data) throws IOExceptio
 	
 }
 
+public void writeStatStudentToFile(String nameOfFile, STAT data) throws IOException {
+	BufferedWriter writer = null;
 
+	try {
+		writer = new BufferedWriter(new FileWriter(nameOfFile));
+		while (data != null) {
+			writer.write(data + "\n");
+		}
+	} finally {
+		if (writer != null) writer.close();
+	}
+	
+}
 
+public void writeApmthStudentToFile(String nameOfFile, APMTH data) throws IOException {
+	BufferedWriter writer = null;
 
+	try {
+		writer = new BufferedWriter(new FileWriter(nameOfFile));
+		while (data != null) {
+			writer.write(data + "\n");
+		}
+	} finally {
+		if (writer != null) writer.close();
+	}
+	
+}
 	
 }
